@@ -1,0 +1,23 @@
+{
+  "name": "jsshorts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": " mocha $NODE_DEBUG_OPTION --reporter spec ./test/**/*",
+    "test_cont": "mocha --watch --reporter spec ./test/**/*"
+  },
+  "author": "Wies Hubbers",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-google": "^0.10.0",
+    "eslint-plugin-chai-expect": "^2.1.0",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-mocha": "^7.0.0",
+    "mocha": "^7.1.2",
+    "chai": "^4.2.0"
+  }
+}
