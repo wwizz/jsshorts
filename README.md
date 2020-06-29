@@ -35,4 +35,37 @@ console.log(`${containsProperty(obj, 'a')}`);
 console.log(`${containsProperty(obj, 'c')}`);
 ```
 
+### `deepCopy`
+Deeps copy an object. It uses JSON serialization under the hood: `JSON.parse(JSON.stringify(a));`
 
+usage 1: `to = deepCopy(from)` creates new deep copied object
+```
+const deepCopy = require('jsshorts').deepCopy;
+const from = { a: 'v1', b: 'v2', c: { x: '123', y: '345' } };
+
+const to = deepCopy(from);
+from.a = 'x'; // modify object, that does not influence 'to' 
+console.log(`${JSON.stringify(from)}`);
+console.log(`${JSON.stringify(to)}`);
+```
+usage 2: `deepCopy(from, to)` deeply copies properties of 'from' object into 'to' object
+```
+const deepCopy = require('jsshorts').deepCopy;
+
+const from = { a: 'aaa' };
+const to = { b: 'bbb' };
+deepCopy(from, to);
+console.log(`${JSON.stringify(to)}`); // to contains a and b
+```
+
+### `removePropertiesNotInFilter`
+Removes properties from 'from' object when property not in 'filter' object
+
+```
+const obj = {
+  a: 'v1', b: 'v2', c: 'v3', d: 'v4',
+};
+const filter = { b: 'cc', c: 'dd' };
+removePropertiesNotInFilter(obj, filter);
+console.log(`${JSON.stringify(obj)}`); // a and d are removed
+```
