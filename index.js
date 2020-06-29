@@ -1,7 +1,4 @@
 
-function deepCopy(obj) {
-  return JSON.parse(JSON.stringify(obj));
-}
 
 function forEach(obj, f) {
   Object.entries(obj).forEach(([key, val]) => f(key, val));
@@ -10,14 +7,18 @@ function forEach(obj, f) {
 function containsProperty(obj, prop) {
   return (obj[prop]) !== undefined;
 }
-
-function deepCopyProperties(from, to) {
+function deepCopy(from, to) {
+  if (to === undefined) {
+    return JSON.parse(JSON.stringify(from));
+  }
   forEach(from, (key, value) => {
     to[key] = deepCopy(value);
   });
+  return to;
 }
 
-function removePropertiesNotInObject(obj, filter) {
+
+function removePropertiesNotInFilter(obj, filter) {
   if (obj === undefined) {
     return;
   }
@@ -37,12 +38,9 @@ function removePropertiesNotInObject(obj, filter) {
     delete obj[toFilter[i]];
   }
 }
-
-
 module.exports = {
   deepCopy,
   forEach,
   containsProperty,
-  deepCopyProperties,
-  removePropertiesNotInObject,
+  removePropertiesNotInFilter,
 };
